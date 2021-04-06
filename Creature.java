@@ -7,8 +7,8 @@
  * the creature is alive or knocked out. The creature is also responsible for calculating
  * damage delivered based on the creature's strength (1 to str) 
  * 
- * @author Crosbie
- * @version 2020-10 v1.0
+ * @author Crosbie modified by Jay Ganji
+ * @version 2021-4-5 v1.1
  */
 // we will learn what the abstract keyword does in a later chapter
 public abstract class Creature
@@ -37,7 +37,8 @@ public abstract class Creature
      * @param hp the health of the creature at the start of the simulation, and the current health levels during battle
      */
     public Creature (int str, int hp) {
-       //implement this
+       this.str=str;
+       this.hp=hp;//implement this
     }
     
     
@@ -47,7 +48,7 @@ public abstract class Creature
      */
     public int attack(){
         // TODO: implement a damage method
-        return 0;
+        return str/2;
     }
     
     
@@ -56,8 +57,14 @@ public abstract class Creature
      * @return true when current hit point level is greater than zero
      */
     public boolean isAlive() {
-        // TODO: implement a method to report if the creature yet lives
-        return false; //change this
+        if (hp>0){
+            System.out.println("This unit is still alive.");
+            return true;
+        }
+        else{
+            System.out.println("This unit has fallen.");// TODO: implement a method to report if the creature yet lives
+            return false;
+        }
     }
     
     /**
@@ -65,8 +72,14 @@ public abstract class Creature
      * @return true when current hit point level is less than or equal to zero
      */
     public boolean isKnockedOut() {
-        //TODO: implement a method to report if the creature has been killed
-        return false; //change this
+        if (hp<=0){
+            System.out.println("This unit is knocked out.");//TODO: implement a method to report if the creature has been killed
+            return true;
+        }
+        else{
+            System.out.println("This unit is still active.");
+            return false;
+        }
     }
     
     
@@ -76,7 +89,7 @@ public abstract class Creature
      * @param damage value to remove from hit point count
      */
     public void takeDamage(int damage) {
-        // TODO: implement this
+        hp = hp - damage;
     }
     
 }
